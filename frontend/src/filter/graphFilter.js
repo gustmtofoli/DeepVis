@@ -1,4 +1,4 @@
-import { showListOfNodesAsString } from '../src/utils.js'
+import { showListOfNodesAsString } from '../utils.js'
 
 function drawGraphFilter(node, link, totalNumberOfNodes) {
     window.applyFilter = function() {

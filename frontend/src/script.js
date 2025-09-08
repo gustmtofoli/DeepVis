@@ -45,10 +45,10 @@ window.generateDiagram = async function () {
         buttonGenerateDiagram.style.display = "none"
 
         showDiagramButton.style.display = "block"
-        showDiagramIcon.src = "img/hide.png"
+        showDiagramIcon.src = "../img/hide.png"
         // showDiagramButton.innerText = "Show Diagram"
         downloadDiagramButton.style.display = "block"
-        diagramImage.src = `${selectedNode}.png`
+        diagramImage.src = `../output/diagrams/${selectedNode}.png`
         diagramImageContainer.style.display = "flex"
     // }, 1000);
 }
@@ -62,15 +62,15 @@ window.showDiagramImage = function() {
 
     if (diagramImageContainer.style.display === "none") {
         // showDiagramButton.innerText = "Hide Diagram"
-        diagramImage.src = `${selectedNode}.png`
+        diagramImage.src = `../output/diagrams/${selectedNode}.png`
         diagramImageContainer.style.display = "flex"
-        showDiagramIcon.src = "img/hide.png"
+        showDiagramIcon.src = "../img/hide.png"
 
     }
     else if (diagramImageContainer.style.display === "flex") {
         // showDiagramButton.innerText = "Show Diagram"
         diagramImageContainer.style.display = "none"
-        showDiagramIcon.src = "img/show.png"
+        showDiagramIcon.src = "../img/show.png"
 
     }
 }
@@ -363,8 +363,8 @@ async function _getJsonData(jsonFilePath) {
 }
 
 async function loadWindow() {
-    const data = await _getJsonData('graph_data.json')
-    const graphPropertiesData = await _getJsonData('graph_properties_data.json')
+    const data = await _getJsonData('../graph_data.json')
+    const graphPropertiesData = await _getJsonData('../graph_properties_data.json')
     _drawAllComponents(
         data, 
         graphPropertiesData

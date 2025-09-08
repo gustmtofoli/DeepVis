@@ -18,5 +18,5 @@ if __name__ == "__main__":
     PORT = 8000
     with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
         print(f"Servidor rodando na porta {PORT}")
-        print(f"Acesse: http://localhost:{PORT}/d3.html")
+        print(f"Acesse: http://localhost:{PORT}/src/d3.html")
         httpd.serve_forever()

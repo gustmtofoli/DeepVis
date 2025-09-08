@@ -39,7 +39,7 @@ class DiagramBuilder:
             "fontcolor": "white"  # Define a cor da label como branca
         }
 
-        with Diagram(title, show=False, direction=direction, filename=f"../frontend/{component_name}", graph_attr=graph_attr, node_attr=node_attr, outformat="png"):
+        with Diagram(title, show=False, direction=direction, filename=f"../frontend/output/diagrams/{component_name}", graph_attr=graph_attr, node_attr=node_attr, outformat="png"):
             edge = Edge(minlen="4")
             
             if component_infos.get('type') == "AWS Lambda Function":
