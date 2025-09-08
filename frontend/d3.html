@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepVis</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+  
+</head>
+
+<body>
+  <div id="loading" class="loading-container">
+    <div class="circle"></div>
+    <div class="loading-text">Loading</div>
+  </div>
+
+
+<div id="content">
+  <div id="filter-container">
+    <hr style="color: #4c4b51; margin-top: 40px;">
+    <label class="label-filter-container">Name:</label>
+    <input type="text" id="node-filter-name" placeholder="" oninput="applyFilter()">
+    <label class="label-filter-container">Language:</label>
+    <input type="text" id="node-filter-language" placeholder="" oninput="applyFilter()">
+    <label class="label-filter-container">Type:</label>
+    <input type="text" id="node-filter-type" placeholder="" oninput="applyFilter()">
+    <label class="label-filter-container">In degree:</label>
+    <input type="text" id="node-filter-in-degree" placeholder="" oninput="applyFilter()">
+    <label class="label-filter-container">Out degree:</label>
+    <input type="text" id="node-filter-out-degree" placeholder="" oninput="applyFilter()">
+    <hr id="search-info-separator" style="color: #4c4b51; display: none;">
+    <label class="label-filter-container" id="search-info-node-label"></label>
+    <div style="overflow-y: auto; overflow-x: auto; max-height: 200px; max-width: 400px;">
+      <label style="color: #ee5871e7; margin-bottom: 20px;" id="search-info-node-list-label"></label>
+    </div>
+    <label class="label-filter-container" id="search-info-related-nodes-label"></label>
+  </div>
+
+  <div id="action-buttons-container-left">
+    <button id="toggle-btn-filter">
+      <img src="img/filter.png" alt="Ícone">
+    </button>
+  </div>
+
+  <div id="action-buttons-container">
+    <button id="toggle-btn-component-info">
+      <img src="img/component-info-2.png" alt="Ícone">
+    </button>
+    <button id="toggleButton">
+      <img src="img/graph-info-2.png" alt="Ícone">
+    </button>
+  </div>
+
+  <div id="info-container">
+    <h3 style="color: white;">Cycle</h3>
+    <label class="label-info-container" id="info-label-cycle"></label>
+    <hr style="color: #4c4b51;">
+    <h3 style="color: white;">Disconnected components:</h3>
+    <label class="label-info-container" id="info-label-disconnected-components"></label>
+    <hr style="color: #4c4b51;">
+    <h3 style="color: white;">Max total connections (in and out):</h3>
+    <label class="label-info-container" id="info-label-nodes-max-degrees"></label>
+    <hr style="color: #4c4b51;">
+    <h3 style="color: white;">Max in connections:</h3>
+    <label class="label-info-container" id="info-label-nodes-max-in-degrees"></label>
+    <hr style="color: #4c4b51;">
+    <h3 style="color: white;">Max out connections:</h3>
+    <label class="label-info-container" id="info-label-nodes-max-out-degrees"></label>
+    <hr style="color: #4c4b51;">
+    <h3 style="color: white;">Total number of nodes:</h3>
+    <label class="label-info-container" id="info-label-total-nodes"></label>
+    <hr style="color: #4c4b51;">
+    <h3 style="color: white;">Types:</h3>
+    <div style="display: flex; flex-direction: column; align-items: center; height: 400px;">
+      <svg id="bar-chart-type" width="200" height="200"></svg>
+    </div>
+    <hr style="color: #4c4b51;">
+    <h3 style="color: white;">Languages:</h3>
+    <div style="display: flex; flex-direction: column; align-items: center; height: 400px; margin-left: 100px">
+      <svg id="pie-chart-language" width="200" height="200"></svg>
+    </div>
+  </div>
+
+  <div id="component-info-container">
+    <h3 style="color: white;">Component Info:</h3>
+    <table class="component-info-container-table">
+      <tr><th></th><th></th></tr>
+      <tr><td>Name</td><td id="popup-node-id"></td></tr>
+      <tr><td>Type</td><td id="popup-node-type"></td></tr>
+      <tr id="popup-node-language-line"><td>Language</td><td id="popup-node-language"></td></tr>
+      <tr><td>In Degree</td><td id="popup-node-in-degree"></td></tr>
+      <tr><td>Out Degree</td><td id="popup-node-out-degree"></td></tr>
+      <tr><td>In</td><td id="popup-node-predecessors"></td></tr>
+      <tr>
+        <td>Out</td>
+        <td id="popup-node-successors"></td>
+      </tr>
+    </table>
+    <div id="diagram-div" style="display: flex; flex-direction: column; gap: 10px">
+      <hr style="color: #4c4b51;">
+      <h3 style="color: white;">Diagram:</h3>
+      <button id="generate-diagram-button" class="simple-button" onClick="generateDiagram()">
+        Generate
+      </button>
+      <div style="display: flex; flex-direction: row; gap: 10px">
+        <button id="show-diagram-button" class="simple-button" style="display: none; bottom: 50%" onClick="showDiagramImage()">
+          <!-- <img src="img/diagram.png" alt="Ícone"> -->
+          <!-- <img src="img/arrow-right.png" alt="Ícone"> -->
+          <img id="show-diagram-icon" src="img/show.png" alt="Ícone">
+        </button>
+        <button id="download-diagram-button" style="display: none" class="simple-button" onClick="downloadDiagramImage()">
+          <img src="img/download.png" alt="Ícone">
+        </button>
+      </div>
+      <div id="diagram-image-container" style="display:none">
+        <img id="diagram-image" src="" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

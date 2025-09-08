@@ -1,0 +1,471 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+    margin-top: 0;
+  }
+
+  html {
+    background: #18171d;
+  }
+
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #18171d;
+    /* #0a0e11; background blue tone*/
+    /* #92886f yellow */
+    /* #213540 intermediate cyan */
+    /* #547074 lighter cyan */
+    /* #9dbac2 super lighter cyan */
+    z-index: -1;
+  }
+
+  #action-buttons-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    top: 20px;
+    right: 10px;
+    z-index: 10;
+    width: auto;
+    height: auto;
+    background: rgba(40, 39, 45, 0.0);
+    transition: transform 0.1s ease-in-out;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    align-items: flex-end;
+  }
+
+  #action-buttons-container button {
+    width: 50px; /* Ocupa toda a largura disponível */
+    display: block; /* Cada botão ocupa uma linha */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #12ebff;
+    background-color: rgba(13, 113, 122, 0.3);
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+
+
+  #action-buttons-container-left {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    top: 20px;
+    left: 10px;
+    z-index: 10;
+    width: auto;
+    height: auto;
+    background: rgba(40, 39, 45, 0.0);
+    transition: transform 0.1s ease-in-out;
+    /* padding: 12px 16px; */
+    border-radius: 8px;
+    /* box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3); */
+    /* border: 1px solid #28272d; */
+    backdrop-filter: blur(5px);
+    align-items: flex-start;
+  }
+
+  #action-buttons-container-left button {
+    width: 100%; /* Ocupa toda a largura disponível */
+    display: block; /* Cada botão ocupa uma linha */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #12ebff;
+    background-color: rgba(13, 113, 122, 0.3);
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+
+  #info-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 90%;
+    max-width: 90%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    top: 20px;
+    right: 70px;
+    z-index: 10;
+    width: 600px;
+    height: auto;
+    background: rgba(40, 39, 45, 0.7);
+    transition: transform 0.3s ease-in-out height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #28272d;
+    backdrop-filter: blur(5px);
+    align-items: flex-start;
+  }
+
+  #component-info-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    max-height: 90%;
+    max-width: 90%;
+    gap: 10px;
+    top: 20px;
+    right: 70px;
+    z-index: 10;
+    width: 600px;
+    height: auto;
+    background: rgba(40, 39, 45, 0.7);
+    transition: transform 0.3s ease-in-out height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #28272d;
+    backdrop-filter: blur(5px);
+    align-items: flex-start;
+  }
+
+  /* Classe para esconder a sidebar */
+  .collapsed {
+    transform: translateY(-200%);
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  
+  /* Estilo do botão de alternância */
+  /* .toggle-btn { */
+      /* position: fixed;
+      right: 0px; */
+      /* top: 0px; */
+      /* width: 200px;
+      height: 50px;
+      background: rgba(13, 113, 122, 0.3);
+      color: white;
+      border: 1px solid #12ebff;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 8px;
+      transition: all 0.1s ease-in-out;
+      backdrop-filter: blur(5px); */
+  /* } */
+
+  /* Hover no botão */
+  /* .toggle-btn:hover {
+      background-color: rgba(13, 113, 122, 1);
+  } */
+
+  /* Estilo dos rótulos */
+  .label-info-container {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+  }
+
+  hr {
+      width: 100%;
+      border: none;
+      border-top: 1px solid #4c4b51;
+  }
+
+  #filter-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 90%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    top: 20px;
+    left: 10px;
+    z-index: 10;
+    background: rgba(40, 39, 45, 0.7);
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 0px #28272d;
+    border: 1px solid #28272d;
+    backdrop-filter: blur(5px);
+  }
+
+  .label-filter-container {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  .label-info-container {
+    font-size: 16px;
+    font-weight: normal;
+    color: #ffffff
+  }
+
+  input {
+    padding: 8px;
+    font-size: 16px;
+    width: auto;
+    background: rgba(26, 25, 29, 0.7);
+    border: 1px solid #4c4b51;
+    color: #ffffff;
+    outline: none;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+  }
+
+  input:focus {
+    border-color: #ffffff;
+  }
+
+  svg {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .node {
+    fill: rgb(13, 113, 122);
+    stroke: #12ebff;
+    stroke-width: 2px;
+    cursor: pointer;
+    transition: stroke 0.05s ease-in-out;
+    border-radius: 50%;
+  }
+
+  .hide-node {
+    fill: rgba(255, 255, 255, 0.1);
+    stroke-width: 0px;
+  }
+
+  .highlight {
+    stroke: #e01c3d !important;
+    stroke-width: 3px !important;
+    fill: rgb(36, 15, 18);
+  }
+
+  .highlight-link {
+    stroke: #e01c3d !important;
+    stroke-width: 2px !important;
+  }
+
+  .hide-link {
+    stroke: #ffffff;
+    stroke-opacity: 0.1 !important;
+    stroke-width: 2px;
+    marker-end: url(#arrow-hide) !important;
+    /* display: none */
+  }
+
+  .link {
+    stroke: #b8b8b8;
+    stroke-opacity: 0.6;
+    stroke-width: 2px;
+    marker-end: url(#arrow);
+  }
+
+  .label {
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    fill: #E0E0E0;
+    pointer-events: none;
+  }
+
+  .label.highlight {
+    fill: white;
+  }
+
+  marker {
+    pointer-events: none;
+  }
+
+  #arrow {
+    fill: #b8b8b8;
+  }
+
+  #arrow-hide {
+    fill-opacity: 0.2
+  }
+
+  .node:hover {
+    stroke: #e01c3d;
+    stroke-width: 3px;
+  }
+
+  .link:hover {
+    stroke: #ff1744;
+    stroke-opacity: 1;
+  }
+
+  #filter-container:hover {
+    border-color: white;
+  }
+
+  .component-info-container-table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+
+  .component-info-container-table th {
+    display: none;
+  }
+
+  .component-info-container-table td {
+    border: 1px solid #4c4b51;
+    padding: 8px;
+    text-align: left;
+  }
+
+  /* .popup-table tr:nth-child(even) {
+    background-color:  rgb(40, 39, 45);
+  } */
+
+  .component-info-container-table tr:hover {
+    background-color:  rgb(40, 39, 45);
+  }
+
+  .node.selected {
+    stroke: rgba(255, 160, 18, 0.8) !important;
+    stroke-width: 6px !important;
+    fill: rgb(0, 0, 0);
+    position: relative;
+  }
+
+  /* body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #18171d;
+} */
+
+
+/* Container do Loading */
+        .loading-container {
+            position: relative;
+            width: auto;
+            height: auto;
+            /* margin-left: 40%; */
+            /* margin-top: 30%; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Círculo externo */
+        .circle {
+            width: 200px;
+            height: 200px;
+            margin-top: 50%;
+            border: 8px solid #12ebff93;
+            border-radius: 50%;
+            border-top: 8px solid transparent;
+            animation: spin 1.5s linear infinite;
+            position: absolute;
+        }
+
+        /* Efeito de brilho */
+        .circle::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #12ebff86;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Animação do círculo girando */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animação do brilho pulsante */
+        @keyframes pulse {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Texto "Loading" futurista */
+        .loading-text {
+            position: absolute;
+            font-size: 18px;
+            color: #12ebff;
+            margin-top: 50%;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+            animation: fadeIn 2s ease-in-out infinite;
+        }
+
+        /* Animação de texto piscando */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+#content {
+  display: none;
+}
+
+.simple-button {
+  width: auto;
+  display: block;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #12ebff;
+  background-color: rgba(13, 113, 122, 0.3);
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  align-self: start;
+}
+
+#diagram-image {
+  width: 100%;  /* A imagem ocupa 100% da largura da div */
+  height: auto; /* Mantém a proporção da imagem */
+  max-width: 600px; /* Define um tamanho máximo */
+}
